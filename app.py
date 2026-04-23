@@ -86,7 +86,7 @@ Answer:"""
 )
 
 llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
-retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
+retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
 
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
@@ -106,7 +106,7 @@ if question:
         st.markdown("### Answer:")
         st.write(response)
 
-    with st.expander("📄 View Sources"):
-        docs = retriever.invoke(question)[:5]
+    with st.expander("📄 View sources "):
+        docs = retriever.invoke(question)[:3]
         for i, doc in enumerate(docs):
             st.info(f"**Source {i+1}** (Page {doc.metadata.get('page', 'N/A')}):\n\n{doc.page_content[:300]}...")
