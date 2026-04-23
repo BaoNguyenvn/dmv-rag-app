@@ -6,9 +6,12 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
-load_dotenv()
+# Đọc API key từ Streamlit secrets hoặc .env
+if "OPENAI_API_KEY" in st.secrets:
+    os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+else:
+    load_dotenv()
 
 st.set_page_config(page_title="DMV Assistant", page_icon="🚗", layout="centered")
 st.title("🤖 DMV RAG App")
