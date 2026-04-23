@@ -6,6 +6,7 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 load_dotenv()
 
